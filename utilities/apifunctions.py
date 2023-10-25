@@ -18,6 +18,18 @@ def element_to_data(element: str):
     return json.loads(data_dict[element])
 
 
+def get_data_len(name: str):
+    load_dotenv()
+    len_dict = {
+        "posts": os.getenv("POSTS_LEN"),
+        "comments": os.getenv("COMMENTS_LEN"),
+        "albums": os.getenv("ALBUMS_LEN"),
+        "photos": os.getenv("PHOTOS_LEN"),
+        "todos": os.getenv("TODOS_LEN"),
+        "users": os.getenv("USERS_LEN")
+    }
+    return len_dict[name]
+
 class ApiFunctions:
     def __init__(self):
         load_dotenv()
@@ -37,3 +49,7 @@ class ApiFunctions:
         else:
             return False
 
+    def check_getall_len(self, response: Response, name: str):
+        data = response.json()
+        len_expected = get_data_len(name)
+        return True if len(data) == int(len_expected) else False
