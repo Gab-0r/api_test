@@ -34,3 +34,20 @@ Feature: API get method
     | photos  | /photos     |
     | todos | /todos        |
     | users | /users  |
+
+
+  @get
+  @getAll
+  Scenario Outline: Use GET method to the wrong endpoint <endpoint>
+    When user sends GET method to <endpoint>
+    Then user verifies the response status code is 404
+    And user verifies the response is empty
+
+    Examples:
+    | endpoint  |
+    | /posts/101 |
+    | /pos/ |
+    | /comment/500  |
+    | /album/40 |
+    | /phot0  |
+    | /user/10  |

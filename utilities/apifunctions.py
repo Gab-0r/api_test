@@ -30,6 +30,7 @@ def get_data_len(name: str):
     }
     return len_dict[name]
 
+
 class ApiFunctions:
     def __init__(self):
         load_dotenv()
@@ -42,8 +43,12 @@ class ApiFunctions:
         return True if response.status_code == int(status_code) else False
 
     def check_get(self, response: Response, element: str):
-        info_to_check = element_to_data(element)
         info_obtained = response.json()
+        if element == "empty":
+            info_to_check = {}
+        else:
+            info_to_check = element_to_data(element)
+
         if info_to_check == info_obtained:
             return True
         else:
