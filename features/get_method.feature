@@ -37,7 +37,7 @@ Feature: API get method
 
 
   @get
-  @getAll
+  @getWrongEndpoint
   Scenario Outline: Use GET method to the wrong endpoint <endpoint>
     When user sends GET method to <endpoint>
     Then user verifies the response status code is 404
