@@ -45,6 +45,18 @@ def get_data_to_post(element: str):
     }
     return json.loads(data_dict[element])
 
+def get_data_to_put(element: str):
+    load_dotenv()
+    data_dict ={
+        "post": os.getenv("POST2PUT"),
+        "comment": os.getenv("COMMENT2PUT"),
+        "album": os.getenv("ALBUM2PUT"),
+        "photo": os.getenv("PHOTO2PUT"),
+        "todo": os.getenv("TODO2PUT"),
+        "user": os.getenv("USER2PUT")
+    }
+    return json.loads(data_dict[element])
+
 class ApiFunctions:
     def __init__(self):
         load_dotenv()
@@ -87,6 +99,20 @@ class ApiFunctions:
                 return False
 
         if not data == info_check:
+            return True
+        else:
+            return False
+
+    def put_request(self, endpoint, element):
+        data = get_data_to_put(element)
+        return requests.put(self.api_url + endpoint, json=data)
+
+    def check_updated_info(self, element, response: Response):
+        data = response.json()
+        print(data)
+        info_to_check = get_data_to_put(element)
+        print(info_to_check)
+        if data == info_to_check:
             return True
         else:
             return False
