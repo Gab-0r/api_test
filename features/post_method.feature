@@ -33,3 +33,15 @@ Feature: API post method
     | photo | /ph |
     | todo  | /ts  |
     | user  | /uss  |
+
+
+  @post
+  @postWrongData
+    Scenario Outline: use POST method to <endpoint> with wrong data
+      When user sends POST method to <endpoint> for post a <element>
+      Then user verifies post status code 500
+      Examples:
+      | element | endpoint  |
+      | wrong_post    | /posts    |
+      | wrong_photo | /photos |
+      | wrong_todo  | /todos  |

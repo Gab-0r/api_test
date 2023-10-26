@@ -38,7 +38,10 @@ def get_data_to_post(element: str):
         "album": os.getenv("ALBUM2POST"),
         "photo": os.getenv("PHOTO2POST"),
         "todo": os.getenv("TO_DO2POST"),
-        "user": os.getenv("USER2POST")
+        "user": os.getenv("USER2POST"),
+        "wrong_post": os.getenv("WRONG_POST"),
+        "wrong_photo": os.getenv("WRONG_PHOTO"),
+        "wrong_todo": os.getenv("WRONG_TODO")
     }
     return json.loads(data_dict[element])
 
