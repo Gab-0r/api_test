@@ -20,6 +20,7 @@ Feature: API post method
     | user  | /users  |
 
   @post
+  @postWrongEndpoint
   Scenario Outline: use POST method to the wrong endpoint <endpoint>
     When user sends POST method to <endpoint> for post a <element>
     Then user verifies post status code 404
