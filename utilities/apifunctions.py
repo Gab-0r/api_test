@@ -30,6 +30,17 @@ def get_data_len(name: str):
     }
     return len_dict[name]
 
+def get_data_to_post(element: str):
+    load_dotenv()
+    data_dict = {
+        "post": os.getenv("POST2POST"),
+        "comment": os.getenv("COMMENT2POST"),
+        "album": os.getenv("ALBUM2POST"),
+        "photo": os.getenv("PHOTO2POST"),
+        "todo": os.getenv("TO_DO2POST"),
+        "user": os.getenv("USER2POST")
+    }
+    return json.loads(data_dict[element])
 
 class ApiFunctions:
     def __init__(self):
@@ -58,3 +69,15 @@ class ApiFunctions:
         data = response.json()
         len_expected = get_data_len(name)
         return True if len(data) == int(len_expected) else False
+
+    def post_request(self, endpoint: str, element: str):
+        data = get_data_to_post(element)
+        return requests.post(self.api_url + endpoint, json=data)
+
+    def check_post_returned(self, element, response: Response):
+        data = response.json()
+        info_check = {}
+        if not data == info_check:
+            return True
+        else:
+            return False

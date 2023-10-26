@@ -6,9 +6,9 @@ Feature: API post method
 
   @post
   Scenario Outline: Use POST method to send a <element> to API
-    When user sends POST method to <endpoint>
-    Then user sends GET method to <endpoint>
-    And user verifies the get response has the correct info for <element>
+    When user sends POST method to <endpoint> for post a <element>
+    Then user verifies post status code 201
+    And user verifies the post response has the correct info for posted <element>
 
     Examples:
     | element | endpoint  |
