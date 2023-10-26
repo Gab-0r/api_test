@@ -77,6 +77,12 @@ class ApiFunctions:
     def check_post_returned(self, element, response: Response):
         data = response.json()
         info_check = {}
+        if element == "empty":
+            if data == info_check:
+                return True
+            else:
+                return False
+
         if not data == info_check:
             return True
         else:

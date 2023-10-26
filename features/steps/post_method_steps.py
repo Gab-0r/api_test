@@ -18,3 +18,9 @@ def post_status_code_is(context, code):
 def check_posted_info(context, element):
     context.api = ApiFunctions()
     assert context.api.check_post_returned(element, context.response), "body returned is not expected"
+
+
+@step("user verifies the post response is empty")
+def check_empty_response(context):
+    context.api = ApiFunctions()
+    assert context.api.check_post_returned("empty", context.response), "body returned is not expected"
