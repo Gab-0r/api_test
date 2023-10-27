@@ -1,6 +1,6 @@
 Feature: API post method
   As a user
-  I want to call post method to and endpoint
+  I want to call post method to an endpoint
   In order to send data to the API
 
 

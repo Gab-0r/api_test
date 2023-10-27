@@ -57,6 +57,19 @@ def get_data_to_put(element: str):
     }
     return json.loads(data_dict[element])
 
+def get_data_to_patch(element: str):
+    load_dotenv()
+    data_dict = {
+        "post": os.getenv("POST2PATCH"),
+        "comment": os.getenv("COMMENT2PATCH"),
+        "album": os.getenv("ALBUM2PATCH"),
+        "photo": os.getenv("PHOTO2PATCH"),
+        "todo": os.getenv("TODO2PATCH"),
+        "user": os.getenv("USER2PATCH")
+    }
+    return json.loads(data_dict[element])
+
+
 class ApiFunctions:
     def __init__(self):
         load_dotenv()
@@ -109,10 +122,21 @@ class ApiFunctions:
 
     def check_updated_info(self, element, response: Response):
         data = response.json()
-        print(data)
         info_to_check = get_data_to_put(element)
-        print(info_to_check)
         if data == info_to_check:
             return True
         else:
             return False
+
+    def patch_request(self, endpoint, element):
+        data = get_data_to_patch(element)
+        return requests.patch(self.api_url + endpoint, json=data)
+
+    def check_patch_returned(self, response, element):
+        data = response.json
+        info_to_check = {}
+        if not data == info_to_check:
+            return True
+        else:
+            return False
+
