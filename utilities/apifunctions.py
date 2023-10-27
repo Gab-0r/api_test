@@ -140,3 +140,14 @@ class ApiFunctions:
         else:
             return False
 
+    def delete_request(self, endpoint):
+        return requests.delete(self.api_url + endpoint)
+
+
+    def check_delete_return(self, response: Response):
+        data = response.json()
+        info_to_check = {}
+        if data == info_to_check:
+            return True
+        else:
+            return False

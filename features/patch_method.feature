@@ -17,5 +17,3 @@ Feature: API path method
     | photo | /photos/68 |
     | todo  | /todos/15  |
     | user  | /users/7  |
-
-
