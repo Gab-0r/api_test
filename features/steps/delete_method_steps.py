@@ -15,7 +15,7 @@ def delete_status_code(context, code):
     assert_status_code(context.api.check_status_code(context.response, code))
 
 
-@step("user verifies the delete response has the correct info for the resource deleted")
+@step("user verifies the DELETE response is empty")
 def check_delete_response(context):
     context.api = ApiFunctions()
     assert_data_empty(context.api.check_delete_return(context.response))

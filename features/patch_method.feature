@@ -39,8 +39,8 @@ Feature: API path method
   @patch
   @patchWrong
     Scenario Outline: Use PATCH method to the endpoint <endpoint> with wrong resource id
-    When user sends PATCH method to <endpoint> and patch a <element>
-    Then user verifies patch status code 500
+      When user sends PATCH method to <endpoint> and patch a <element>
+      Then user verifies patch status code 500
 
       Examples:
       | element | endpoint  |
