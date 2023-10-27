@@ -19,4 +19,9 @@ def patch_status_code_is(context, code):
 def patch_check_info(context, element):
     context.api = ApiFunctions()
     assert_data_response(context.api.check_patch_returned(context.response, element))
-    
+
+
+@step("user verifies the PATCH response is empty")
+def check_patch_empty_response(context):
+    context.api = ApiFunctions()
+    assert_data_empty(context.api.check_patch_returned(context.response, "empty"))

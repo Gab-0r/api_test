@@ -122,7 +122,10 @@ class ApiFunctions:
 
     def check_updated_info(self, element, response: Response):
         data = response.json()
-        info_to_check = get_data_to_put(element)
+        if element == "empty":
+            info_to_check = {}
+        else:
+            info_to_check = get_data_to_put(element)
         if data == info_to_check:
             return True
         else:
@@ -133,8 +136,14 @@ class ApiFunctions:
         return requests.patch(self.api_url + endpoint, json=data)
 
     def check_patch_returned(self, response, element):
-        data = response.json
+        data = response.json()
         info_to_check = {}
+        if element == "empty":
+            if data == info_to_check:
+                return True
+            else:
+                return False
+
         if not data == info_to_check:
             return True
         else:
@@ -151,3 +160,4 @@ class ApiFunctions:
             return True
         else:
             return False
+

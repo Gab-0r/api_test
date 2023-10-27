@@ -9,6 +9,7 @@ Feature: API path method
     When user sends PATCH method to <endpoint> and patch a <element>
     Then user verifies patch status code 200
     And user verifies the patch response has the correct info for patched <element>
+
     Examples:
     | element | endpoint  |
     | post  | /posts/23 |
@@ -17,3 +18,35 @@ Feature: API path method
     | photo | /photos/68 |
     | todo  | /todos/15  |
     | user  | /users/7  |
+
+
+  @patch
+  @patchWrong
+  Scenario Outline: Use PATCH method to wrong endpoint <endpoint>
+    When user sends PATCH method to <endpoint> and patch a <element>
+    Then user verifies patch status code 404
+    And user verifies the PATCH response is empty
+
+    Examples:
+    | element | endpoint  |
+    | post  | /post/20 |
+    | comment | /cent/10 |
+    | album | /alm/50 |
+    | photo | /photo/68 |
+    | todo  | /tod/15  |
+    | user  | /use/7  |
+
+  @patch
+  @patchWrong
+    Scenario Outline: Use PATCH method to the endpoint <endpoint> with wrong resource id
+    When user sends PATCH method to <endpoint> and patch a <element>
+    Then user verifies patch status code 500
+
+      Examples:
+      | element | endpoint  |
+      | photo | /photos/6000  |
+      | user  | /users/11 |
+      | album | /albums/101 |
+      | photo | /photos/5001  |
+      | todo  | /todos/201    |
+      | user  | /users/11     |

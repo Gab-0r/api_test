@@ -2,6 +2,7 @@ from behave import step
 from utilities.apifunctions import ApiFunctions
 from utilities.asserts_helper import *
 
+
 @step("user sends GET method to {endpoint}")
 def get_single_element(context, endpoint):
     context.api = ApiFunctions()

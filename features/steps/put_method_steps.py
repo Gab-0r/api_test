@@ -19,3 +19,9 @@ def check_put_status(context, code):
 def check_put_response(context, element):
     context.api = ApiFunctions()
     assert_data_response(context.api.check_updated_info(element, context.response))
+
+
+@step("user verifies the PUT response is empty")
+def check_put_empty_body(context):
+    context.api = ApiFunctions()
+    assert_data_empty(context.api.check_updated_info("empty", context.response))
