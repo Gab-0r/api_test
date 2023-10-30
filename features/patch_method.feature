@@ -25,7 +25,7 @@ Feature: API path method
   Scenario Outline: Use PATCH method to wrong endpoint <endpoint>
     When user sends PATCH method to <endpoint> and patch a <element>
     Then user verifies the status code is 404
-    And user verifies the PATCH response is empty
+    And user verifies the response is empty
 
     Examples:
     | element | endpoint  |

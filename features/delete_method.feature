@@ -7,7 +7,7 @@ Feature: API delete method
   Scenario Outline: Use DELETE method to delete a <element> resource
     When user sends DELETE method to <endpoint> for delete a <element>
     Then user verifies the status code is 200
-    And user verifies the DELETE response is empty
+    And user verifies the response is empty
 
     Examples:
     | element | endpoint  |
@@ -23,7 +23,7 @@ Feature: API delete method
   Scenario Outline: Use DELETE method to the wrong endpoint <endpoint>
     When user sends DELETE method to <endpoint> for delete a <element>
     Then user verifies the status code is 404
-    And user verifies the DELETE response is empty
+    And user verifies the response is empty
 
     Examples:
     | element | endpoint  |

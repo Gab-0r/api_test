@@ -159,3 +159,10 @@ class ApiFunctions:
         else:
             return False
 
+    def is_response_empty(self, response: Response):
+        data = response.json()
+        if data == {}:
+            return True
+        else:
+            return False
+

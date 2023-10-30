@@ -24,7 +24,8 @@ Feature: API post method
   Scenario Outline: use POST method to the wrong endpoint <endpoint>
     When user sends POST method to <endpoint> for post a <element>
     Then user verifies the status code is 404
-    And user verifies the post response is empty
+    And user verifies the response is empty
+
     Examples:
     | element | endpoint  |
     | post    | /post  |
@@ -40,6 +41,7 @@ Feature: API post method
     Scenario Outline: use POST method to <endpoint> with wrong data
       When user sends POST method to <endpoint> for post a <element>
       Then user verifies the status code is 500
+
       Examples:
       | element | endpoint  |
       | wrong_post    | /posts    |

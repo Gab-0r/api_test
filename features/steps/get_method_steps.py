@@ -25,9 +25,3 @@ def check_response_info(context, element):
 def check_response_len(context, name):
     context.api = ApiFunctions()
     assert_data_response(context.api.check_getall_len(context.response, name))
-
-
-@step("user verifies the response is empty")
-def check_empty_data(context):
-    context.api = ApiFunctions()
-    assert_data_empty(context.api.check_get(context.response, "empty"))

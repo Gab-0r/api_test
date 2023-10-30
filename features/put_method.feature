@@ -23,7 +23,7 @@ Feature: API put method
     Scenario Outline: Use PUT method to wrong endpoint <endpoint>
       When user sends PUT method to <endpoint> for post a <element>
       Then user verifies the status code is 404
-      And user verifies the PUT response is empty
+      And user verifies the response is empty
 
       Examples:
       | endpoint  | element |
