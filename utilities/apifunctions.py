@@ -2,7 +2,6 @@ import os
 from dotenv import load_dotenv
 import requests
 from requests import Response
-import json
 from utilities.testing_data import TestingData as td
 
 

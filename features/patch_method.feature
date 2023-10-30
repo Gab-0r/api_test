@@ -7,7 +7,7 @@ Feature: API path method
   @patch
   Scenario Outline: Use PATCH method to path a <element> resource
     When user sends PATCH method to <endpoint> and patch a <element>
-    Then user verifies patch status code 200
+    Then user verifies the status code is 200
     And user verifies the patch response has the correct info for patched <element>
 
     Examples:
@@ -24,7 +24,7 @@ Feature: API path method
   @patchWrong
   Scenario Outline: Use PATCH method to wrong endpoint <endpoint>
     When user sends PATCH method to <endpoint> and patch a <element>
-    Then user verifies patch status code 404
+    Then user verifies the status code is 404
     And user verifies the PATCH response is empty
 
     Examples:
@@ -40,7 +40,7 @@ Feature: API path method
   @patchWrong
     Scenario Outline: Use PATCH method to the endpoint <endpoint> with wrong resource id
       When user sends PATCH method to <endpoint> and patch a <element>
-      Then user verifies patch status code 500
+      Then user verifies the status code is 500
 
       Examples:
       | element | endpoint  |

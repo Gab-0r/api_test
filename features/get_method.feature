@@ -7,7 +7,7 @@ Feature: API get method
   @getSingle
   Scenario Outline: Use GET method to obtain single <element>
     When user sends GET method to <endpoint>
-    Then user verifies the response status code is 200
+    Then user verifies the status code is 200
     And user verifies the get response has the correct info for <element>
 
     Examples:
@@ -24,7 +24,7 @@ Feature: API get method
   @getAll
   Scenario Outline: Use GET method to obtain the whole <name> resource
     When user sends GET method to <endpoint>
-    Then user verifies the response status code is 200
+    Then user verifies the status code is 200
     And user verifies the response for get all <name> resources
 
     Examples:
@@ -40,7 +40,7 @@ Feature: API get method
   @getWrongEndpoint
   Scenario Outline: Use GET method to the wrong endpoint <endpoint>
     When user sends GET method to <endpoint>
-    Then user verifies the response status code is 404
+    Then user verifies the status code is 404
     And user verifies the response is empty
 
     Examples:

@@ -6,7 +6,7 @@ Feature: API put method
   @put
   Scenario Outline: Use PUT method to update a <element> resource
     When user sends PUT method to <endpoint> for post a <element>
-    Then user verifies put status code 200
+    Then user verifies the status code is 200
     And user verifies the put response has the correct info for the <element> updated
 
     Examples:
@@ -22,7 +22,7 @@ Feature: API put method
     @putWrongEndpoint
     Scenario Outline: Use PUT method to wrong endpoint <endpoint>
       When user sends PUT method to <endpoint> for post a <element>
-      Then user verifies put status code 404
+      Then user verifies the status code is 404
       And user verifies the PUT response is empty
 
       Examples:
@@ -35,7 +35,7 @@ Feature: API put method
 
     Scenario Outline: Use PUT method to the endpoint <endpoint> with wrong resource id
       When user sends PUT method to <endpoint> for post a <element>
-      Then user verifies put status code 500
+      Then user verifies the status code is 500
 
       Examples:
       | endpoint  | element |

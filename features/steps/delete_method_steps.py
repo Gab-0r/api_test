@@ -9,12 +9,6 @@ def delete_resource_at(context, endpoint, element):
     context.response = context.api.send_request("DELETE",endpoint)
 
 
-@step("user verifies delete status code {code}")
-def delete_status_code(context, code):
-    context.api = ApiFunctions()
-    assert_status_code(context.api.check_status_code(context.response, code))
-
-
 @step("user verifies the DELETE response is empty")
 def check_delete_response(context):
     context.api = ApiFunctions()
