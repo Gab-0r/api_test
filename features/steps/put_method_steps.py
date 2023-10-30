@@ -6,7 +6,7 @@ from utilities.asserts_helper import *
 @step("user sends PUT method to {endpoint} for post a {element}")
 def put_element_at(context, endpoint, element):
     context.api = ApiFunctions()
-    context.response = context.api.put_request(endpoint, element)
+    context.response = context.api.send_request("PUT", endpoint, data=element)
 
 
 @step("user verifies put status code {code}")

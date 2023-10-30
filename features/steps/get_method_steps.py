@@ -6,7 +6,7 @@ from utilities.asserts_helper import *
 @step("user sends GET method to {endpoint}")
 def get_single_element(context, endpoint):
     context.api = ApiFunctions()
-    context.response = context.api.get_request(endpoint)
+    context.response = context.api.send_request("GET", endpoint)
 
 
 @step("user verifies the response status code is {status_code}")

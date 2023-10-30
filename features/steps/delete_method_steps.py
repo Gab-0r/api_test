@@ -6,7 +6,7 @@ from utilities.asserts_helper import *
 @step("user sends DELETE method to {endpoint} for delete a {element}")
 def delete_resource_at(context, endpoint, element):
     context.api = ApiFunctions()
-    context.response = context.api.delete_request(endpoint)
+    context.response = context.api.send_request("DELETE",endpoint)
 
 
 @step("user verifies delete status code {code}")

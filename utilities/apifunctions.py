@@ -30,6 +30,7 @@ def get_data_len(name: str):
     }
     return len_dict[name]
 
+
 def get_data_to_post(element: str):
     load_dotenv()
     data_dict = {
@@ -45,6 +46,7 @@ def get_data_to_post(element: str):
     }
     return json.loads(data_dict[element])
 
+
 def get_data_to_put(element: str):
     load_dotenv()
     data_dict ={
@@ -56,6 +58,7 @@ def get_data_to_put(element: str):
         "user": os.getenv("USER2PUT")
     }
     return json.loads(data_dict[element])
+
 
 def get_data_to_patch(element: str):
     load_dotenv()
@@ -75,8 +78,21 @@ class ApiFunctions:
         load_dotenv()
         self.api_url = os.getenv("API_URL")
 
-    def get_request(self, endpoint):
-        return requests.get(self.api_url + endpoint)
+    def send_request(self, request_type: str, endpoint: str, data=None):
+        if request_type == "GET":
+            return requests.get(self.api_url + endpoint)
+        elif request_type == "POST":
+            data_ = get_data_to_post(data)
+            return requests.post(self.api_url + endpoint, json=data_)
+        elif request_type == "PUT":
+            data_ = get_data_to_put(data)
+            return requests.put(self.api_url + endpoint, json=data_)
+        elif request_type == "PATCH":
+            data_ = get_data_to_patch(data)
+            return requests.patch(self.api_url + endpoint, json=data_)
+        elif request_type == "DELETE":
+            return requests.delete(self.api_url + endpoint)
+
 
     def check_status_code(self, response: Response, status_code):
         return True if response.status_code == int(status_code) else False
@@ -98,10 +114,6 @@ class ApiFunctions:
         len_expected = get_data_len(name)
         return True if len(data) == int(len_expected) else False
 
-    def post_request(self, endpoint: str, element: str):
-        data = get_data_to_post(element)
-        return requests.post(self.api_url + endpoint, json=data)
-
     def check_post_returned(self, element, response: Response):
         data = response.json()
         info_check = {}
@@ -116,10 +128,6 @@ class ApiFunctions:
         else:
             return False
 
-    def put_request(self, endpoint, element):
-        data = get_data_to_put(element)
-        return requests.put(self.api_url + endpoint, json=data)
-
     def check_updated_info(self, element, response: Response):
         data = response.json()
         if element == "empty":
@@ -130,10 +138,6 @@ class ApiFunctions:
             return True
         else:
             return False
-
-    def patch_request(self, endpoint, element):
-        data = get_data_to_patch(element)
-        return requests.patch(self.api_url + endpoint, json=data)
 
     def check_patch_returned(self, response, element):
         data = response.json()
@@ -148,10 +152,6 @@ class ApiFunctions:
             return True
         else:
             return False
-
-    def delete_request(self, endpoint):
-        return requests.delete(self.api_url + endpoint)
-
 
     def check_delete_return(self, response: Response):
         data = response.json()

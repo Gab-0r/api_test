@@ -6,7 +6,7 @@ from utilities.asserts_helper import *
 @step("user sends POST method to {endpoint} for post a {element}")
 def post_element_to(context, endpoint, element):
     context.api = ApiFunctions()
-    context.response = context.api.post_request(endpoint, element)
+    context.response = context.api.send_request("POST", endpoint, data=element)
 
 
 @step("user verifies post status code {code}")

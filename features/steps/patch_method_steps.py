@@ -6,7 +6,7 @@ from utilities.asserts_helper import *
 @step("user sends PATCH method to {endpoint} and patch a {element}")
 def path_element_at(context, endpoint, element):
     context.api = ApiFunctions()
-    context.response = context.api.patch_request(endpoint, element)
+    context.response = context.api.send_request("PATCH",endpoint, data=element)
 
 
 @step("user verifies patch status code {code}")
