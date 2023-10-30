@@ -3,30 +3,30 @@ from dotenv import load_dotenv
 import requests
 from requests import Response
 import json
+from utilities.testing_data import TestingData as td
 
 
 def element_to_data(element: str):
-    load_dotenv()
     data_dict = {
-        "post": os.getenv("POST_INFO"),
-        "comment": os.getenv("COMMENT_INFO"),
-        "album": os.getenv("ALBUM_INFO"),
-        "photo": os.getenv("PHOTO_INFO"),
-        "todo": os.getenv("TODO_INFO"),
-        "user": os.getenv("USER_INFO")
+        "post": td.POST_INFO,
+        "comment": td.COMMENT_INFO,
+        "album": td.ALBUM_INFO,
+        "photo": td.PHOTO_INFO,
+        "todo": td.TODO_INFO,
+        "user": td.USER_INFO
     }
-    return json.loads(data_dict[element])
+    return data_dict[element]
 
 
 def get_data_len(name: str):
     load_dotenv()
     len_dict = {
-        "posts": os.getenv("POSTS_LEN"),
-        "comments": os.getenv("COMMENTS_LEN"),
-        "albums": os.getenv("ALBUMS_LEN"),
-        "photos": os.getenv("PHOTOS_LEN"),
-        "todos": os.getenv("TODOS_LEN"),
-        "users": os.getenv("USERS_LEN")
+        "posts": td.POSTS_LEN,
+        "comments": td.COMMENTS_LEN,
+        "albums": td.ALBUMS_LEN,
+        "photos": td.PHOTOS_LEN,
+        "todos": td.TODOS_LEN,
+        "users": td.USERS_LEN
     }
     return len_dict[name]
 
@@ -34,43 +34,43 @@ def get_data_len(name: str):
 def get_data_to_post(element: str):
     load_dotenv()
     data_dict = {
-        "post": os.getenv("POST2POST"),
-        "comment": os.getenv("COMMENT2POST"),
-        "album": os.getenv("ALBUM2POST"),
-        "photo": os.getenv("PHOTO2POST"),
-        "todo": os.getenv("TO_DO2POST"),
-        "user": os.getenv("USER2POST"),
-        "wrong_post": os.getenv("WRONG_POST"),
-        "wrong_photo": os.getenv("WRONG_PHOTO"),
-        "wrong_todo": os.getenv("WRONG_TODO")
+        "post": td.POST2POST,
+        "comment": td.COMMENT2POST,
+        "album": td.ALBUM2POST,
+        "photo": td.PHOTO2POST,
+        "todo": td.TO_DO2POST,
+        "user": td.USER2POST,
+        "wrong_post": td.WRONG_POST,
+        "wrong_photo": td.WRONG_PHOTO,
+        "wrong_todo": td.WRONG_TODO
     }
-    return json.loads(data_dict[element])
+    return data_dict[element]
 
 
 def get_data_to_put(element: str):
     load_dotenv()
     data_dict ={
-        "post": os.getenv("POST2PUT"),
-        "comment": os.getenv("COMMENT2PUT"),
-        "album": os.getenv("ALBUM2PUT"),
-        "photo": os.getenv("PHOTO2PUT"),
-        "todo": os.getenv("TODO2PUT"),
-        "user": os.getenv("USER2PUT")
+        "post": td.POST2PUT,
+        "comment": td.COMMENT2PUT,
+        "album": td.ALBUM2PUT,
+        "photo": td.PHOTO2PUT,
+        "todo": td.TODO2PUT,
+        "user": td.USER2PUT
     }
-    return json.loads(data_dict[element])
+    return data_dict[element]
 
 
 def get_data_to_patch(element: str):
     load_dotenv()
     data_dict = {
-        "post": os.getenv("POST2PATCH"),
-        "comment": os.getenv("COMMENT2PATCH"),
-        "album": os.getenv("ALBUM2PATCH"),
-        "photo": os.getenv("PHOTO2PATCH"),
-        "todo": os.getenv("TODO2PATCH"),
-        "user": os.getenv("USER2PATCH")
+        "post": td.POST2PATCH,
+        "comment": td.COMMENT2PATCH,
+        "album": td.ALBUM2PATCH,
+        "photo": td.PHOTO2PATCH,
+        "todo": td.TODO2PATCH,
+        "user": td.USER2PATCH
     }
-    return json.loads(data_dict[element])
+    return data_dict[element]
 
 
 class ApiFunctions:
@@ -92,7 +92,6 @@ class ApiFunctions:
             return requests.patch(self.api_url + endpoint, json=data_)
         elif request_type == "DELETE":
             return requests.delete(self.api_url + endpoint)
-
 
     def check_status_code(self, response: Response, status_code):
         return True if response.status_code == int(status_code) else False
